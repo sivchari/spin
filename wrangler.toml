@@ -1,0 +1,6 @@
+name = "spin"
+main = "./build/worker.mjs"
+compatibility_date = "2024-06-16"
+
+[build]
+command = "make build"

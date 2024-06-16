@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>ぐるぐる</title>
+        <meta charset="utf-8">
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+            }
+            h1 {
+                margin: 0;
+                padding: 20px;
+                background-color: #f0f0f0;
+                text-align: center;
+            }
+            form {
+                margin: 20px;
+                padding: 20px;
+                background-color: #f0f0f0;
+            }
+            textarea {
+                width: 100%;
+                height: 100px;
+            }
+            select {
+                width: 100%;
+                height: 30px;
+            }
+            input[type="submit"] {
+                width: 100%;
+                height: 30px;
+                background-color: #f0f0f0;
+                border: 1px solid #ccc;
+                cursor: pointer;
+            }
+            h2 {
+                margin: 20px;
+                padding: 20px;
+                background-color: #f0f0f0;
+            }
+            ul {
+                margin: 0;
+                padding: 0;
+            }
+            li {
+                list-style: none;
+                margin: 0;
+                padding: 10px;
+                background-color: #f0f0f0;
+                border-bottom: 1px solid #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>ぐるぐる</h1>
+        <form action="/spin" method="get">
+            <p>メンバー</p>
+            <textarea type="text" name="member" value=""></textarea>
+
+            <p>グループ数</p>
+            <select name="group">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+
+            <p><input type="submit" value="spin"></p>
+        </form>
+
+        {{ if gt (len .) 0 }}
+            <h2>結果</h2>
+            {{ range $i, $group := . }}
+                <p>グループ{{ add $i 1 }}</p>
+                <ul>
+                    {{ range $group }}
+                        <li>{{ . }}</li>
+                    {{ end }}
+                </ul>
+            {{ end }}
+        {{ end }}
+    </body>
+</html>
